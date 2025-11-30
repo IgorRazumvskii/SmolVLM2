@@ -1,0 +1,11 @@
+gradio>=4.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+# Специальная версия transformers с поддержкой SmolVLM-2
+git+https://github.com/huggingface/transformers@v4.49.0-SmolVLM-2
+pillow>=10.0.0
+accelerate>=0.24.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+num2words>=0.5.0
+

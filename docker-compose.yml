@@ -1,0 +1,35 @@
+services:
+  multimodal-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: multimodal-demo
+    ports:
+      - "${PORT:-7860}:7860"
+    environment:
+      - DEVICE=${DEVICE:-cpu}
+      - MODEL_SIZE=${MODEL_SIZE:-256M}
+      - HF_MODEL_ID=${HF_MODEL_ID:-}
+      - PORT=7860
+      - MODELS_DIR=/app/models
+      - HF_HOME=/app/models/hf_cache
+    volumes:
+      - ./models:/app/models
+      - ./temp_results:/app/temp_results
+    # Для использования GPU
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+    restart: unless-stopped
+
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 4G
+
